@@ -1,21 +1,22 @@
+// Runtime: O(logn)
+// Space: O(1)
 function binary_search(arr: Array<number>, target: number) {
-    let start = 0
-    let end = arr.length -1
+    let low = 0
+    let high = arr.length - 1
     
-    while(start < end) {
-        let middle = Math.floor(arr.length/2)
+    while(low <= high) {
+        let middle = Math.floor((high-low) / 2)
         if(arr[middle] === target) {
-            return { 
-                    arr,
-                    index:middle 
-                }
-        } else if( arr[middle] > target) {
-            end = middle
-        } else {
-            start = middle
+            return middle
         }
-        // console.log(middle)
+        if(arr[middle] < target) {
+            low = middle + 1 
+        } else {
+            high = middle - 1
+        }
+        
     }
+    return -1
 }
 
 export { binary_search }
